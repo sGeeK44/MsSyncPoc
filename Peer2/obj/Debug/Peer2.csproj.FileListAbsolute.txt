@@ -1,0 +1,5 @@
+C:\Users\fperin\Documents\Visual Studio 2008\Projects\CustomChangeTracking\Peer2\bin\Debug\Peer2.exe
+C:\Users\fperin\Documents\Visual Studio 2008\Projects\CustomChangeTracking\Peer2\bin\Debug\Peer2.pdb
+C:\Users\fperin\Documents\Visual Studio 2008\Projects\CustomChangeTracking\Peer2\obj\Debug\ResolveAssemblyReference.cache
+C:\Users\fperin\Documents\Visual Studio 2008\Projects\CustomChangeTracking\Peer2\obj\Debug\Peer2.exe
+C:\Users\fperin\Documents\Visual Studio 2008\Projects\CustomChangeTracking\Peer2\obj\Debug\Peer2.pdb

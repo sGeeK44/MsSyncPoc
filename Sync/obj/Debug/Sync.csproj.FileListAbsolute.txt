@@ -1,0 +1,5 @@
+C:\Users\fperin\Documents\Visual Studio 2008\Projects\CustomChangeTracking\Sync\bin\Debug\Sync.dll
+C:\Users\fperin\Documents\Visual Studio 2008\Projects\CustomChangeTracking\Sync\bin\Debug\Sync.pdb
+C:\Users\fperin\Documents\Visual Studio 2008\Projects\CustomChangeTracking\Sync\obj\Debug\ResolveAssemblyReference.cache
+C:\Users\fperin\Documents\Visual Studio 2008\Projects\CustomChangeTracking\Sync\obj\Debug\Sync.dll
+C:\Users\fperin\Documents\Visual Studio 2008\Projects\CustomChangeTracking\Sync\obj\Debug\Sync.pdb

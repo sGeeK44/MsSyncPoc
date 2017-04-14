@@ -1,0 +1,7 @@
+C:\Users\fperin\Documents\Visual Studio 2008\Projects\CustomChangeTracking\CustomChangeTracking\bin\Debug\CustomChangeTracking.exe
+C:\Users\fperin\Documents\Visual Studio 2008\Projects\CustomChangeTracking\CustomChangeTracking\bin\Debug\CustomChangeTracking.pdb
+C:\Users\fperin\Documents\Visual Studio 2008\Projects\CustomChangeTracking\CustomChangeTracking\obj\Debug\ResolveAssemblyReference.cache
+C:\Users\fperin\Documents\Visual Studio 2008\Projects\CustomChangeTracking\CustomChangeTracking\obj\Debug\CustomChangeTracking.exe
+C:\Users\fperin\Documents\Visual Studio 2008\Projects\CustomChangeTracking\CustomChangeTracking\obj\Debug\CustomChangeTracking.pdb
+C:\Users\fperin\Documents\Visual Studio 2008\Projects\CustomChangeTracking\CustomChangeTracking\bin\Debug\Sync.dll
+C:\Users\fperin\Documents\Visual Studio 2008\Projects\CustomChangeTracking\CustomChangeTracking\bin\Debug\Sync.pdb
