@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Data.SqlServerCe;
 using System.IO;
+using System.Runtime.Serialization;
+using System.Runtime.Serialization.Formatters.Binary;
 using Microsoft.Synchronization.Data;
 using Microsoft.Synchronization.Data.SqlServerCe;
 
@@ -10,7 +12,7 @@ namespace Sync
     {
         //Make server changes that are synchronized on the second 
         //synchronization.
-        public static void MakeDataChangesOnServer(string db)
+        public static void MakeDataChanges(string db)
         {
             int rowCount = 0;
 
@@ -64,7 +66,7 @@ namespace Sync
             }
         }
 
-        public static DbSyncScopeDescription ProvisionServer(string db, string scopeName)
+        public static DbSyncScopeDescription ProvisionDatabase(string db, string scopeName)
         {
             var serverConn = new SqlCeConnection(db);
 
@@ -90,8 +92,7 @@ namespace Sync
             return SqlCeSyncDescriptionBuilder.GetDescriptionForScope(scopeName, serverConn);
         }
 
-
-        public static void ProvisionningClient(string db, string scopeName, DbSyncScopeDescription scopeDesc)
+        public static void ProvisionningDatabase(string db, DbSyncScopeDescription scopeDesc)
         {
             // create a connection to the SyncCompactDB database
             var clientConn = new SqlCeConnection(db);
@@ -108,6 +109,22 @@ namespace Sync
             var clientConn = new SqlCeConnection(db);
             var clientProvider = new SqlCeSyncProvider(scopeName, clientConn);
             return clientProvider;
+        }
+
+        public static MemoryStream SerializeToStream(object o)
+        {
+            var stream = new MemoryStream();
+            IFormatter formatter = new BinaryFormatter();
+            formatter.Serialize(stream, o);
+            return stream;
+        }
+
+        public static object DeserializeFromStream(MemoryStream stream)
+        {
+            IFormatter formatter = new BinaryFormatter();
+            stream.Seek(0, SeekOrigin.Begin);
+            var o = formatter.Deserialize(stream);
+            return o;
         }
     }
 }

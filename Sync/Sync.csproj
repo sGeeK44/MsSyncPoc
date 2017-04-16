@@ -58,6 +58,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ClientTcpConnection.cs" />
+    <Compile Include="ServerTcpConnection.cs" />
+    <Compile Include="TcpConnection.cs" />
+    <Compile Include="TcpSyncOrchestrator.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Utility.cs" />
   </ItemGroup>

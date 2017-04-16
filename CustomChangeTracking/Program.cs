@@ -1,8 +1,5 @@
 using System;
 using System.Data.SqlServerCe;
-using System.IO;
-using System.Runtime.Serialization;
-using System.Runtime.Serialization.Formatters.Binary;
 using Microsoft.Synchronization;
 using Microsoft.Synchronization.Data;
 using Microsoft.Synchronization.Data.SqlServerCe;
@@ -45,7 +42,7 @@ namespace CustomChangeTracking
             // create a connection to the SyncDB server database
             var serverProvider = CreateProvider(ConnStrDbServerSync);
             
-            Utility.MakeDataChangesOnServer(ConnStrSqlCeClientSync);
+            Utility.MakeDataChanges(ConnStrSqlCeClientSync);
             
             // execute the synchronization process
             SyncLocalWithSerialize(clientProvider, serverProvider);
@@ -89,24 +86,8 @@ namespace CustomChangeTracking
 
         private static object Transfert(object o)
         {
-            var mem = SerializeToStream(o);
-            return DeserializeFromStream(mem);
-        }
-
-        public static MemoryStream SerializeToStream(object o)
-        {
-            var stream = new MemoryStream();
-            IFormatter formatter = new BinaryFormatter();
-            formatter.Serialize(stream, o);
-            return stream;
-        }
-
-        public static object DeserializeFromStream(MemoryStream stream)
-        {
-            IFormatter formatter = new BinaryFormatter();
-            stream.Seek(0, SeekOrigin.Begin);
-            var o = formatter.Deserialize(stream);
-            return o;
+            var mem = Utility.SerializeToStream(o);
+            return Utility.DeserializeFromStream(mem);
         }
 
         public static void LocalSyncUncoupling()
@@ -123,7 +104,7 @@ namespace CustomChangeTracking
             // create a connection to the SyncDB server database
             var serverProvider = CreateProvider(ConnStrDbServerSync);
 
-            Utility.MakeDataChangesOnServer(ConnStrSqlCeClientSync);
+            Utility.MakeDataChanges(ConnStrSqlCeClientSync);
 
             // execute the synchronization process
             SyncLocal(clientProvider, serverProvider);
@@ -166,7 +147,7 @@ namespace CustomChangeTracking
             Console.WriteLine("ChangesFailed: " + syncStats.ChangesFailed);
         }
 
-        public void LocalSync()
+        public static void LocalSync()
         {
             RecreateCompactDatabase();
             ProvisionDb();
@@ -196,7 +177,7 @@ namespace CustomChangeTracking
             syncOrchestrator.Direction = SyncDirectionOrder.UploadAndDownload;
 
 
-            Utility.MakeDataChangesOnServer(ConnStrSqlCeClientSync);
+            Utility.MakeDataChanges(ConnStrSqlCeClientSync);
 
             // execute the synchronization process
             var syncStats = syncOrchestrator.Synchronize();
@@ -218,12 +199,13 @@ namespace CustomChangeTracking
 
         private static DbSyncScopeDescription ProvisionMainDb()
         {
-            return Utility.ProvisionServer(ConnStrDbServerSync, ScopeName);
+            return Utility.ProvisionDatabase(ConnStrDbServerSync, ScopeName);
         }
 
         private static void ProvisionningClient(DbSyncScopeDescription scopeDesc)
         {
-            Utility.ProvisionningClient(ConnStrSqlCeClientSync, ScopeName, scopeDesc);
+            Utility.ProvisionDatabase(ConnStrSqlCeClientSync, ScopeName);
+            //Utility.ProvisionningClient(ConnStrSqlCeClientSync, ScopeName, scopeDesc);
         }
 
         static void Program_ApplyChangeFailed(object sender, DbApplyChangeFailedEventArgs e)
